@@ -31,10 +31,20 @@ var Move = {
 //Initialize restart Bool
 var Restart = false;
 
+function clearTimeouts()
+{
+    var highTime = setTimeout(";");
+    for(var i = 0; i < highTime; i++)
+    {
+        clearTimeout(i);
+    }
+}
+
 function initGame(){
     //Reset
     $("#restart").click(function(e){
         Restart = true;
+        $("#consoleBody").html("");
         $("#cmd").one("gameOver", function () {
             gameOver();
         });
@@ -45,6 +55,7 @@ function initGame(){
     });
     //compile
     $("#compile").click(function(){
+        allowTrigger = true;
         var packet = new packetWriter(Number($('#lang-select').val()),editor.getValue());
         var data = sendToServer(packet, "maze");
         console.log(data);

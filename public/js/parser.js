@@ -2,6 +2,7 @@
  * Created by Steven on 10/7/2016.
  */
 
+var allowTrigger = true;
 
 function trimNewLines(input) {
     var reg = /[a-zA-Z ]*(\r\n|\n|\r)/gm;
