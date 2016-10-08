@@ -52,6 +52,8 @@
                         std::cout << "Hello World" << std:endl;
                     }
                 </textarea>
+                <div id="console"></div>
+
             </div>
         </div>
     </div>
@@ -78,6 +80,8 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <button id="console-toggle" onclick="toggleConsole()">Console Toggle</button>
+
     <!-- Scripts -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -91,6 +95,18 @@
     <script type="text/javascript" src="js/maze/preload.js"></script>
     <script type="text/javascript" src="js/maze/game.js"></script>
     <script type="text/javascript" src="js/maze/main.js"></script>
-
+    <script>
+        var open = false;
+        function toggleConsole(){
+            if(open){
+                $('#console').css("display", "none");
+                open = !open;
+            }
+            else{
+                $('#console').css("display", "block");
+                open = !open;
+            }
+        }
+    </script>
 </body>
 </html>
