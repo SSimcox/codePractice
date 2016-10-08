@@ -21,7 +21,7 @@ Maze.Game.prototype = {
         this.finLayer = this.map.createLayer("Stairs");
 
         //Collision on blocked layer
-        this.map.setCollisionBetween(1, 50, true, "Walls");
+        this.map.setCollisionBetween(1, 100, true, "Walls");
         this.map.setCollisionBetween(1, 50, true, "Stairs");
 
         //Resize for game
@@ -152,19 +152,7 @@ Maze.Game.prototype = {
             this.player.body.velocity.x += 50;
         }
     },
-    /*createStairs: function(){
-        //Create Stairs
-        this.stairs = this.game.add.group();
-        this.stairs.endableBody = true;
-        //find all the stairs in our maze
-        var result = this.findObjectsByType("stairs", this.map, 'objectsLayer');
-        //Iterate over and add objects
-        result.forEach(function (element) {
-            element.sprite = "stairs";
-            this.createFromTiledObject(element, this.stairs);
-        },this);
-    },*/
     gameOver: function () {
-        console.log("we have a game over");
+        $("#cmd").trigger("gameOver");
     }
 };
