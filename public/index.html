@@ -44,8 +44,14 @@
                 <div class="hidden" id="cmd"></div>
                 <button class="btn btn-primary" id="restart">Restart</button>
             </div>
-            <div class="col-xs-12 col-md-6">
-                place for the editor
+            <div class="col-xs-12 col-md-6" style="min-height: 500px">
+                <textarea id="editor" style="min-height: 500px" rows="50">
+                #include <iostream>
+
+                    void foo(int x){
+                        std::cout << "Hello World" << std:endl;
+                    }
+                </textarea>
             </div>
         </div>
     </div>
@@ -75,6 +81,8 @@
     <!-- Scripts -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/ace-builds/src-noconflict/ace.js" data-ace-base="node_modules/ace-builds/src-noconflict" type="text/javascript" charset="utf-8"></script>
+    <script src=" node_modules/ace-builds/src-noconflict/ext-language_tools.js"></script>
     <!-- Commands -->
     <script type="text/javascript" src="js/maze/commands.js"></script>
     <!-- Game Scripts -->
