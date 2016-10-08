@@ -31,29 +31,6 @@ var Move = {
 //Initialize restart Bool
 var Restart = false;
 
-
-//For testing purposes only
-setTimeout(function(){
-    $("#cmd").trigger("down");
-    setTimeout(function(){
-        $("#cmd").trigger("left");
-        setTimeout(function(){
-            $("#cmd").trigger("down");
-            setTimeout(function(){
-                $("#cmd").trigger("right");
-                setTimeout(function(){
-                    $("#cmd").trigger("down");
-                    setTimeout(function(){
-                        $("#cmd").trigger("up");
-                    }, 500);
-                }, 500);
-            }, 500);
-
-        }, 500);
-    }, 500);
-}, 1000);
-
-
 function initGame(){
     //Reset
     $("#restart").click(function(e){
@@ -66,6 +43,23 @@ function initGame(){
     $("#cmd").one("gameOver", function () {
         gameOver();
     });
+    //compile
+    $("#compile").click(function(){
+        var packet = new packetWriter(7,editor.getValue());
+        var data = sendToServer(packet, "maze");
+        console.log(data);
+        $("#console").css("display", "block");
+        if(data.status == "success"){
+            var output = "Compilation Successful \n";
+            output += data.output;
+            $("#consoleBody").html(output);
+            parse(data.output);
+        }
+    });
+    $("#cClose").click(function(){
+        $("#console").css("display", "none");
+    })
+    //Compile
 }
 
 function gameOver() {
@@ -90,10 +84,6 @@ $(document).ready(function(){
     console.log(h);
     //Set Editor height
     $("#editorContainer").attr("style", "height:" + (h - 50) + "px;");
-    //For testing
-    $("#compile").click(function(){
-
-    })
 });
 
 //Editor Functions

@@ -28,5 +28,5 @@ function parse(input){
 }
 
 function myTrigger(index){
-    $(document).trigger(commands[index].event, commands[index].name);
+    $("#cmd").trigger(commands[index].event, commands[index].name);
 }

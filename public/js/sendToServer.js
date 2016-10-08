@@ -8,14 +8,14 @@ function packetWriter (lang, c){
     this.code =  c;
 }
 
-function sendToServer(packet){
+function sendToServer(packet, game){
     var preparedPacket = packet;
     // Force flow to stop while waiting for response
     $.ajaxSetup({async:false});
 
     // POST with callback
     var returnData = null;
-    $.post( "/api/parrot/maze", preparedPacket, function( data ) {
+    $.post( "/api/compile/" + game, preparedPacket, function( data ) {
         returnData = data;
         $('#compile').trigger( "serverResponse");
     }, "json");

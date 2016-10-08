@@ -1,16 +1,16 @@
 @keyframes graphicsIn {
     from{height: 0px;}
-    to{height: 100px;}
+    to{height: 20%;}
 }
 
 #console {
     display: none;
-    height: 100px;
+    height: 20%;
     width: 50%;
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: black;
+    z-index: 40;
     -webkit-animation-name: wkgraphicsIn;
     -webkit-animation-duration: 1s;
     animation-name: graphicsIn;
@@ -37,6 +37,7 @@
 }
 body{
     background-color: #d8d8d8;
+    overflow-y: hidden;
 }
 
 /*Ace Editor Styling*/
@@ -98,6 +99,11 @@ body{
     font-family: 'Lato', sans-serif;
     background-image: none;
 }
+.btn-danger{
+    background-color: #c6706a;
+    font-family: 'Lato', sans-serif;
+    background-image: none;
+}
 
 /* Card */
 .card{
@@ -131,3 +137,37 @@ body{
 .modal-title{
     font-family: 'Lato', sans-serif;
 }
+
+/*Console*/
+#console .header{
+    background-color: black;
+}
+#console{
+    background-color: #474747;
+}
+#console .body{
+    height: 90%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#console .header h4{
+    margin: 0px;
+    padding: 5px;
+    color: white;
+}
+#console .body pre{
+    background-color: transparent;
+    border: 0px;
+    color: white;
+}
+/*Game*/
+#maze-game{
+    max-width: 700px;
+    margin: auto;
+    display: block;
+}
+#container{
+    margin: auto;
+}
+canvas {   display : block;   margin : auto;}

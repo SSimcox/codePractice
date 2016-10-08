@@ -55,7 +55,9 @@
                         and report back to Ash what direct to turn ("Go Up", "Go Down", "Go Right", "Go Left") to help him escape the maze.
                     </div>
                 </div>
-                <div class="col-xs-12 no-margin no-pad game" id="maze-game"></div>
+                <div class="col-xs-12 no-pad">
+                    <div class=" no-pad game" id="maze-game"></div>
+                </div>
                 <div class="hidden" id="cmd"></div>
                 <div class="buttonRow col-xs-12 no-pad tb-pad">
                     <button class="btn btn-primary pull-right l-pad" id="restart"><i class="fa fa-refresh" aria-hidden="true"></i> Restart</button>
@@ -63,14 +65,26 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6 no-margin no-pad" id="editorContainer">
-                <textarea id="editor" style="height: 500px" rows="50">
+                <textarea id="editor"  rows="50">
 #include <iostream>
+using namespace std;
 
-void foo(int x){
-    std::cout << "Hello World" << std:endl;
+int main(){
+    cout << "hello world" << endl;
+    return 0;
 }
                 </textarea>
-                <div id="console"></div>
+                <div id="console" class="row no-margin">
+                    <div class = "header col-xs-12 no-pad">
+                        <h4 class="col-xs-10">Ouput</h4>
+                        <div class="col-xs-2 no-pad no-margin">
+                            <button class="btn btn-danger pull-right" id="cClose"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <pre id="consoleBody"></pre>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -98,13 +112,14 @@ void foo(int x){
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <button id="console-toggle" onclick="toggleConsole()">Console Toggle</button>
 
     <!-- Scripts -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/ace-builds/src-noconflict/ace.js" data-ace-base="node_modules/ace-builds/src-noconflict" type="text/javascript" charset="utf-8"></script>
-    <script src=" node_modules/ace-builds/src-noconflict/ext-language_tools.js"></script>
+    <script src="node_modules/ace-builds/src-noconflict/ext-language_tools.js"></script>
+    <script src="js/sendToServer.js"></script>
+    <script src="js/parser.js"></script>
     <!-- Commands -->
     <script type="text/javascript" src="js/maze/commands.js"></script>
     <!-- Game Scripts -->
