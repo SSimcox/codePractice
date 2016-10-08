@@ -49,16 +49,27 @@ function initGame(){
         var data = sendToServer(packet, "maze");
         console.log(data);
         $("#console").css("display", "block");
-        if(data.status == "success"){
-            var output = "Compilation Successful \n";
-            output += data.output;
+        console.log(data);
+        if(data.status === "success"){
+            if(data.errors == ""){
+                var output = "Compilation Successful \n";
+                output += data.output;
+                $("#consoleBody").html(output);
+                parse(data.output);
+            }else{
+                var output = "Compilation Failed \n";
+                output += data.errors;
+                $("#consoleBody").html(output);
+            }
+        }else{
+            var output = "Compilation Error \n";
+            output += "Compilation server not found";
             $("#consoleBody").html(output);
-            parse(data.output);
         }
     });
     $("#cClose").click(function(){
         $("#console").css("display", "none");
-    })
+    });
     //Compile
 }
 
