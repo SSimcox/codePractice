@@ -33,7 +33,6 @@ var Restart = false;
 
 
 //For testing purposes only
-console.log(commands);
 setTimeout(function(){
     $("#cmd").trigger("down");
     setTimeout(function(){
@@ -54,8 +53,33 @@ setTimeout(function(){
     }, 500);
 }, 1000);
 
-//Test Rest
-$("#restart").click(function(e){
-    console.log("I was clicked");
-    Restart = true;
+
+function initGame(){
+    //Reset
+    $("#restart").click(function(e){
+        Restart = true;
+        $("#cmd").one("gameOver", function () {
+            gameOver();
+        });
+    });
+    //Win!
+    $("#cmd").one("gameOver", function () {
+        gameOver();
+    });
+}
+
+function gameOver() {
+    $('#finModal').modal('show');
+    $( "#finModal" ).on('shown.bs.modal', function(){
+        $("#close").click(function(){
+            Restart = true;
+            $("#cmd").one("gameOver", function () {
+                gameOver();
+            });
+        })
+    });
+}
+
+$(document).ready(function(){
+    initGame();
 });

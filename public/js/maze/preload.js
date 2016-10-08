@@ -21,7 +21,6 @@ Maze.Preload.prototype = {
         this.load.image("dungeon", "../../games/maze/img/dungeon.jpg");
         this.load.image("guy", "../../games/maze/img/guy.gif");
         this.load.image("guy_single", "../../games/maze/img/guy_single.png");
-        this.load.image("stairs", "../../games/maze/img/stairs_single.png");
     },
     create: function () {
         this.state.start("Game");
