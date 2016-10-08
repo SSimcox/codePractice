@@ -45,7 +45,7 @@ function initGame(){
     });
     //compile
     $("#compile").click(function(){
-        var packet = new packetWriter(7,editor.getValue());
+        var packet = new packetWriter(Number($('#lang-select').val()),editor.getValue());
         var data = sendToServer(packet, "maze");
         console.log(data);
         $("#console").css("display", "block");
