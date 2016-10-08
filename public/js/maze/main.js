@@ -82,12 +82,27 @@ function gameOver() {
 
 $(document).ready(function(){
     initGame();
+    //Set Editor height
+    var h = window.innerHeight;
+    if (h < 600){
+        h = 650;
+    }
+    console.log(h);
+    //Set Editor height
+    $("#editorContainer").attr("style", "height:" + (h - 50) + "px;");
+    //For testing
+    $("#compile").click(function(){
+
+    })
 });
 
 //Editor Functions
 var editor = ace.edit("editor");
-editor.setTheme("ace/theme/monokai");
+editor.setTheme("ace/theme/xcode");
 editor.getSession().setMode("ace/mode/c_cpp");
+editor.setOption({
+    maxLines: Infinity
+});
 editor.resize();
 
 
