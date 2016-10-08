@@ -7,7 +7,6 @@ var gen = function(app){
 
     //compile endpoint
     router.post("/compile/:game", function (req, res) {
-        console.log();
         var game = req.params.game;
         if(stdin.hasOwnProperty(game)){
             req.body.stdin = stdin[game];
@@ -20,6 +19,14 @@ var gen = function(app){
                     res.json({status:"failed", err:err});
                 }
             })
+        }
+    });
+
+    router.post("/parrot/:game", function(req, res){
+        var game = req.params.game;
+        if(stdin.hasOwnProperty(game)){
+            req.body.stdin = stdin[game];
+            res.json(req.body);
         }
     });
 
