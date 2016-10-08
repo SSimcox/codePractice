@@ -33,7 +33,6 @@ var Restart = false;
 
 
 //For testing purposes only
-console.log(commands);
 setTimeout(function(){
     $("#cmd").trigger("down");
     setTimeout(function(){
@@ -54,8 +53,67 @@ setTimeout(function(){
     }, 500);
 }, 1000);
 
-//Test Rest
-$("#restart").click(function(e){
-    console.log("I was clicked");
-    Restart = true;
+
+function initGame(){
+    //Reset
+    $("#restart").click(function(e){
+        Restart = true;
+        $("#cmd").one("gameOver", function () {
+            gameOver();
+        });
+    });
+    //Win!
+    $("#cmd").one("gameOver", function () {
+        gameOver();
+    });
+}
+
+function gameOver() {
+    $('#finModal').modal('show');
+    $( "#finModal" ).on('shown.bs.modal', function(){
+        $("#close").click(function(){
+            Restart = true;
+            $("#cmd").one("gameOver", function () {
+                gameOver();
+            });
+        })
+    });
+}
+
+$(document).ready(function(){
+    initGame();
 });
+
+//Editor Functions
+var editor = ace.edit("editor");
+editor.setTheme("ace/theme/monokai");
+editor.getSession().setMode("ace/mode/c_cpp");
+editor.resize();
+
+
+function setEditorLang(langNumber){
+    var str = "ace/mode/c_cpp";
+    switch(langNumber){
+        case 7: str = "ace/mode/c_cpp";
+            break;
+        case 8: str = "ace/mode/java";
+            break;
+        case 4: str = "ace/mode/javascript";
+            break;
+        case 0: str = "ace/mode/python";
+            break;
+        case 1: str = "ace/mode/ruby";
+            break;
+        case 10: str = "ace/mode/csharp";
+            break;
+        case 6: str = "ace/mode/golang";
+            break;
+        case 3: str = "ace/mode/php";
+            break;
+        case 5: str = "ace/mode/scala";
+            break;
+        default: str = "ace/mode/c_cpp";
+            break;
+    }
+    editor.getSession().setMode(str);
+}

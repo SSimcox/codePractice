@@ -9,7 +9,8 @@
   "author": "Timothy Ferrell",
   "license": "ISC",
   "dependencies": {
+    "ace-builds": "^1.2.5",
     "bootstrap": "^3.3.7",
-    "jquery": "^1.12.4",
+    "jquery": "^1.12.4"
   }
 }
