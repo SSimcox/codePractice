@@ -7,6 +7,11 @@
 // Receive object
 // Emit event
 
+function packetWriter (lang, c){
+    this.language = lang;
+    this.code =  c;
+};
+
 function sendToServer(packet){
     // Serialize to JSON object
     var preparedPacket = JSON.stringify(packet);
@@ -16,9 +21,10 @@ function sendToServer(packet){
 
     // POST with callback
     var returnData = null;
-    $.post( "/api/compile", preparedPacket, function( data ) {
+    $.post( "/api/parrot/maze", preparedPacket, function( data ) {
         returnData = data;
         $('#compile').trigger( "serverResponse");
+        console.log("Got a response!");
     }, "json");
 
     // Return flow to async AJAX
@@ -26,3 +32,7 @@ function sendToServer(packet){
 
     return returnData;
 }
+
+var pyth = new packetWriter(0, "print'hello'");
+console.log(pyth);
+sendToServer(pyth);
