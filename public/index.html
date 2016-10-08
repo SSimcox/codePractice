@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/main.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -41,7 +40,9 @@
     <div class="container container-fluid">
         <div class="row">
             <div class="col-xs-12 col-md-6">
-                game
+                <div class="col-xs-12" id="maze-game"></div>
+                <div class="hidden" id="cmd"></div>
+                <button class="btn btn-primary" id="restart">Restart</button>
             </div>
             <div class="col-xs-12 col-md-6">
                 place for the editor
@@ -52,7 +53,14 @@
     <!-- Scripts -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/bootstrap-material-design/dist/js/ripples.min.js"></script>
-    <script src="node_modules/bootstrap-material-design/dist/js/material.min.js"></script>
+    <!-- Commands -->
+    <script type="text/javascript" src="js/maze/commands.js"></script>
+    <!-- Game Scripts -->
+    <script type="text/javascript" src="js/phaser.js"></script>
+    <script type="text/javascript" src="js/maze/boot.js"></script>
+    <script type="text/javascript" src="js/maze/preload.js"></script>
+    <script type="text/javascript" src="js/maze/game.js"></script>
+    <script type="text/javascript" src="js/maze/main.js"></script>
+
 </body>
 </html>
