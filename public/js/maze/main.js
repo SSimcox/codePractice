@@ -83,6 +83,7 @@ function gameOver() {
             });
         })
     });
+    $("#consoleBody").html("");
 }
 
 $(document).ready(function(){
