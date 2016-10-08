@@ -2,20 +2,14 @@
  * Created by Steven on 10/7/2016.
  */
 
-// Take object
-// Send to server
-// Receive object
-// Emit event
-
+// Creates the JSON Object
 function packetWriter (lang, c){
     this.language = lang;
     this.code =  c;
-};
+}
 
 function sendToServer(packet){
-    // Serialize to JSON object
-    var preparedPacket = JSON.stringify(packet);
-
+    var preparedPacket = packet;
     // Force flow to stop while waiting for response
     $.ajaxSetup({async:false});
 
@@ -24,7 +18,6 @@ function sendToServer(packet){
     $.post( "/api/parrot/maze", preparedPacket, function( data ) {
         returnData = data;
         $('#compile').trigger( "serverResponse");
-        console.log("Got a response!");
     }, "json");
 
     // Return flow to async AJAX
@@ -32,7 +25,3 @@ function sendToServer(packet){
 
     return returnData;
 }
-
-var pyth = new packetWriter(0, "print'hello'");
-console.log(pyth);
-sendToServer(pyth);
