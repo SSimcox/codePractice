@@ -21,7 +21,7 @@ Maze.Game.prototype = {
         this.finLayer = this.map.createLayer("Stairs");
 
         //Collision on blocked layer
-        this.map.setCollisionBetween(1, 50, true, "Walls");
+        this.map.setCollisionBetween(1, 100, true, "Walls");
         this.map.setCollisionBetween(1, 50, true, "Stairs");
 
         //Resize for game
@@ -31,11 +31,17 @@ Maze.Game.prototype = {
         var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
 
         //we only created one player so we know there is only one result
-        this.player = this.game.add.sprite(result[0].x, result[0].y, 'guy_single');
+        this.player = this.game.add.sprite(result[0].x, result[0].y, 'guyAnimated');
         this.game.physics.arcade.enable(this.player);
 
         //camera to follow player in world
         this.game.camera.follow(this.player);
+
+        //Create our animations...
+        this.player.animations.add("down",[0,1,2,3,4], 10, true, true);
+        this.player.animations.add("left",[5,6,7,8,9], 10, true, true);
+        this.player.animations.add("up",[10,11,12,13,14], 10, true, true);
+        this.player.animations.add("right",[15,16,17,18,19], 10, true, true);
 
         //Create events
         $("#cmd").on("down", function(){
@@ -88,6 +94,7 @@ Maze.Game.prototype = {
         this.player.body.velocity.x = 0;
 
         if(Move.down){
+            this.player.animations.play("down");
             this.player.body.velocity.y += 50;
             if(Move.count == 0){
                 Move.count += 1;
@@ -98,8 +105,8 @@ Maze.Game.prototype = {
             }else{
                 Move.count += 1;
             }
-        }
-        if(Move.up){
+        }else if(Move.up){
+            this.player.animations.play("up");
             this.player.body.velocity.y -= 50;
             if(Move.count == 0){
                 Move.count += 1;
@@ -110,8 +117,8 @@ Maze.Game.prototype = {
             }else{
                 Move.count += 1;
             }
-        }
-        if(Move.left){
+        }else if(Move.left){
+            this.player.animations.play("left");
             this.player.body.velocity.x -= 50;
             if(Move.count == 0){
                 Move.count += 1;
@@ -122,9 +129,9 @@ Maze.Game.prototype = {
             }else{
                 Move.count += 1;
             }
-        }
-        if(Move.right){
+        }else if(Move.right){
             this.player.body.velocity.x += 50;
+            this.player.animations.play("right");
             if(Move.count == 0){
                 Move.count += 1;
                 setTimeout(function(){
@@ -134,37 +141,30 @@ Maze.Game.prototype = {
             }else{
                 Move.count += 1;
             }
-        }
-
-        //For testing only...
-        if(this.cursors.up.isDown) {
+        }else if(this.cursors.up.isDown) { //For testing only...
+            this.player.animations.play("up");
             if(this.player.body.velocity.y == 0)
                 this.player.body.velocity.y -= 50;
         }
         else if(this.cursors.down.isDown) {
+            this.player.animations.play("down");
             if(this.player.body.velocity.y == 0)
                 this.player.body.velocity.y += 50;
         }
         else if(this.cursors.left.isDown) {
+            this.player.animations.play("left");
             this.player.body.velocity.x -= 50;
         }
         else if(this.cursors.right.isDown) {
+            this.player.animations.play("right");
             this.player.body.velocity.x += 50;
+        }else{
+            this.player.animations.stop();
+            this.player.frame = 0;
         }
+
     },
-    /*createStairs: function(){
-        //Create Stairs
-        this.stairs = this.game.add.group();
-        this.stairs.endableBody = true;
-        //find all the stairs in our maze
-        var result = this.findObjectsByType("stairs", this.map, 'objectsLayer');
-        //Iterate over and add objects
-        result.forEach(function (element) {
-            element.sprite = "stairs";
-            this.createFromTiledObject(element, this.stairs);
-        },this);
-    },*/
     gameOver: function () {
-        console.log("we have a game over");
+        $("#cmd").trigger("gameOver");
     }
 };
