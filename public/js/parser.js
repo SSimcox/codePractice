@@ -2,6 +2,7 @@
  * Created by Steven on 10/7/2016.
  */
 
+
 function trimNewLines(input) {
     var reg = /[a-zA-Z ]*(\r\n|\n|\r)/gm;
     input = input.match(reg);
@@ -13,6 +14,7 @@ function trimNewLines(input) {
 }
 
 function parse(input){
+    parserRunning = true;
     input = trimNewLines(input);
     for(var i = 0; i < input.length; ++i)
     {
