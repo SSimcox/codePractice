@@ -45,7 +45,7 @@ function initGame(){
     });
     //compile
     $("#compile").click(function(){
-        var packet = new packetWriter(7,editor.getValue());
+        var packet = new packetWriter(Number($('#lang-select').val()),editor.getValue());
         var data = sendToServer(packet, "maze");
         console.log(data);
         $("#console").css("display", "block");
@@ -96,6 +96,7 @@ $(document).ready(function(){
     console.log(h);
     //Set Editor height
     $("#editorContainer").attr("style", "height:" + (h - 50) + "px;");
+    $('#lang-select').on("change", setEditorLang);
 });
 
 //Editor Functions
@@ -108,7 +109,8 @@ editor.setOption({
 editor.resize();
 
 
-function setEditorLang(langNumber){
+function setEditorLang(){
+    var langNumber = Number($('#lang-select').val());
     var str = "ace/mode/c_cpp";
     switch(langNumber){
         case 7: str = "ace/mode/c_cpp";
